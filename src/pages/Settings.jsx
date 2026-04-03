@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Bell, Shield, Moon, Sun, Fingerprint, LogOut, ChevronRight, HelpCircle, Info, CheckCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import clsx from 'clsx';
 
 export default function Settings() {
+  const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(
     document.documentElement.classList.contains('dark')
   );
+  const [biometric, setBiometric] = useState(false);
   const [feedback, setFeedback] = useState(null);
 
   useEffect(() => {
@@ -19,9 +22,20 @@ export default function Settings() {
   }, [darkMode]);
 
   const handleOptionClick = (label) => {
-    console.log(`Setting clicked: ${label}`);
     if (label === 'Dark Mode') {
       setDarkMode(!darkMode);
+      return;
+    }
+    if (label === 'Biometric Access') {
+      setBiometric(!biometric);
+      return;
+    }
+    if (label === 'Privacy & Security') {
+      navigate('/settings/privacy');
+      return;
+    }
+    if (label === 'About SwachhMap') {
+      navigate('/settings/about');
       return;
     }
     
@@ -36,9 +50,16 @@ export default function Settings() {
       icon: darkMode ? <Sun size={20} /> : <Moon size={20} />, 
       label: 'Dark Mode', 
       color: 'bg-indigo-50 text-indigo-500 dark:bg-indigo-500/10 dark:text-indigo-400',
-      isToggle: true 
+      isToggle: true,
+      toggleState: darkMode
     },
-    { icon: <Fingerprint size={20} />, label: 'Biometric Access', color: 'bg-purple-50 text-purple-500 dark:bg-purple-500/10 dark:text-purple-400' },
+    { 
+      icon: <Fingerprint size={20} />, 
+      label: 'Biometric Access', 
+      color: 'bg-purple-50 text-purple-500 dark:bg-purple-500/10 dark:text-purple-400',
+      isToggle: true,
+      toggleState: biometric
+    },
     { icon: <HelpCircle size={20} />, label: 'Help & Support', color: 'bg-orange-50 text-orange-500 dark:bg-orange-500/10 dark:text-orange-400' },
     { icon: <Info size={20} />, label: 'About SwachhMap', color: 'bg-gray-100 text-gray-600 dark:bg-gray-500/10 dark:text-gray-400' }
   ];
@@ -68,11 +89,11 @@ export default function Settings() {
              {option.isToggle ? (
                 <div className={clsx(
                   "w-12 h-6 rounded-full relative transition-colors duration-300",
-                  darkMode ? "bg-swachh-emerald" : "bg-gray-200 dark:bg-slate-700"
+                  option.toggleState ? "bg-swachh-emerald" : "bg-gray-200 dark:bg-slate-700"
                 )}>
                    <div className={clsx(
                      "absolute top-1 w-4 h-4 bg-white rounded-full shadow-md transition-all duration-300",
-                     darkMode ? "left-7" : "left-1"
+                     option.toggleState ? "left-7" : "left-1"
                    )}></div>
                 </div>
              ) : (

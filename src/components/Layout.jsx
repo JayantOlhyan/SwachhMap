@@ -1,5 +1,5 @@
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import { MapPin, Camera, User, Settings, ArrowLeft, Map as MapIcon, FileText } from 'lucide-react';
+import { MapPin, Camera, User, Settings, ArrowLeft, Map as MapIcon, FileText, ShoppingBag } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export default function Layout({ children }) {
@@ -12,10 +12,11 @@ export default function Layout({ children }) {
   const isReport = location.pathname === '/report';
   const isProfile = location.pathname === '/profile';
   const isSettings = location.pathname === '/settings';
+  const isShop = location.pathname === '/shop';
   const isDetail = location.pathname.startsWith('/report/');
 
   // Show bottom nav on main utility pages
-  const showBottomNav = isList || isProfile || isSettings || isHome || isMap;
+  const showBottomNav = isList || isProfile || isSettings || isHome || isMap || isShop;
 
   // Render varying headers based on route
   const renderHeader = () => {
@@ -58,10 +59,10 @@ export default function Layout({ children }) {
 
     if (isMap) {
       return (
-        <header className="absolute top-4 left-4 right-4 z-[500] flex justify-between items-center bg-white/90 backdrop-blur-md shadow-lg rounded-3xl p-3 border border-gray-100">
+        <header className="absolute top-4 left-4 right-4 z-[500] flex justify-between items-center bg-white shadow-lg rounded-3xl p-3 border border-gray-100">
           <div className="flex items-center gap-2 px-1">
             <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain rounded-full bg-white shadow-sm" />
-            <h1 className="text-lg font-black text-gray-900 font-sans tracking-tight">SwachhMap</h1>
+            <h1 className="text-lg font-black text-swachh-green font-sans tracking-tight">SwachhMap</h1>
           </div>
           <Link to="/list" className="bg-swachh-green text-white px-5 py-2 rounded-2xl text-xs font-black uppercase tracking-widest shadow-lg hover:brightness-110 active:scale-95 transition-all">
              List View
@@ -101,9 +102,9 @@ export default function Layout({ children }) {
             <p className="text-[10px] font-bold uppercase tracking-tighter">Reports</p>
           </Link>
           
-          <Link to="/map" className={clsx("flex flex-col items-center gap-1 transition-colors", isMap ? "text-swachh-emerald" : "text-gray-400")}>
-            <MapIcon size={24} className={isMap ? "fill-swachh-emerald/10" : ""} />
-            <p className="text-[10px] font-bold uppercase tracking-tighter">Map</p>
+          <Link to="/shop" className={clsx("flex flex-col items-center gap-1 transition-colors", isShop ? "text-swachh-emerald" : "text-gray-400")}>
+            <ShoppingBag size={24} className={isShop ? "fill-swachh-emerald/10" : ""} />
+            <p className="text-[10px] font-bold uppercase tracking-tighter">Shop</p>
           </Link>
 
           <Link to="/report" className="flex flex-col items-center -mt-10 relative group">

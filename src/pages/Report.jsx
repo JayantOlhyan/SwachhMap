@@ -152,6 +152,8 @@ export default function Report() {
             >
               <option value="" disabled>Select Category</option>
               <option value="Garbage">Garbage</option>
+              <option value="Recyclable Garbage">Recyclable Garbage</option>
+              <option value="Non-Recyclable Garbage">Non-Recyclable Garbage</option>
               <option value="Sewage">Sewage</option>
               <option value="Illegal Dumping">Illegal Dumping</option>
               <option value="Pothole">Pothole</option>

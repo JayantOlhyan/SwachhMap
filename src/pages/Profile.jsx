@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { User, Award, History, TrendingUp, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { api } from '../lib/mockFirebase';
 
 export default function Profile() {
@@ -25,12 +26,12 @@ export default function Profile() {
         <p className="text-green-100 text-sm">Community Hero</p>
         
         <div className="mt-6 flex gap-8 w-full justify-center">
-          <div className="flex flex-col items-center">
+          <Link to="/shop" className="flex flex-col items-center hover:scale-105 active:scale-95 transition-transform bg-white/10 p-3 px-6 rounded-2xl border border-white/20 shadow-sm cursor-pointer">
             <span className="text-2xl font-black">{stats.points}</span>
-            <span className="text-[10px] uppercase font-bold tracking-widest text-green-200">Points</span>
-          </div>
+            <span className="text-[10px] uppercase font-bold tracking-widest text-yellow-300 drop-shadow-sm">Shop Now</span>
+          </Link>
           <div className="w-px h-10 bg-white/20 self-center"></div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center p-3 px-6">
             <span className="text-2xl font-black">{stats.reportsCount}</span>
             <span className="text-[10px] uppercase font-bold tracking-widest text-green-200">Reports</span>
           </div>
@@ -71,7 +72,7 @@ export default function Profile() {
       {/* Action List */}
       <div className="px-6 flex flex-col gap-3">
          <h3 className="font-bold text-gray-800 text-sm ml-1">Account Activity</h3>
-         <button className="bg-white p-4 rounded-2xl flex items-center justify-between shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors">
+         <Link to="/leaderboard" className="bg-white p-4 rounded-2xl flex items-center justify-between shadow-sm border border-gray-100 hover:bg-gray-50 transition-colors cursor-pointer active:scale-95">
             <div className="flex items-center gap-3">
                <div className="p-2 bg-purple-50 text-purple-500 rounded-xl">
                   <TrendingUp size={20} />
@@ -79,7 +80,7 @@ export default function Profile() {
                <span className="font-bold text-gray-700 text-sm">View Leaderboard</span>
             </div>
             <ChevronRight size={18} className="text-gray-300" />
-         </button>
+         </Link>
       </div>
     </div>
   );

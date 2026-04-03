@@ -7,6 +7,10 @@ import List from './pages/List';
 import ReportDetail from './pages/ReportDetail';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
+import Shop from './pages/Shop';
+import Leaderboard from './pages/Leaderboard';
+import Privacy from './pages/Privacy';
+import About from './pages/About';
 
 function App() {
   return (
@@ -20,6 +24,10 @@ function App() {
           <Route path="/report/:id" element={<ReportDetail />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/settings/privacy" element={<Privacy />} />
+          <Route path="/settings/about" element={<About />} />
         </Routes>
       </Layout>
     </Router>

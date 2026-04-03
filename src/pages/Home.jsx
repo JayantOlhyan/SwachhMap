@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from '../components/ui';
 import { api } from '../lib/mockFirebase';
 import { FileText, CheckCircle, Clock } from 'lucide-react';
@@ -32,14 +32,19 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px]"></div>
         
-        <div className="relative z-10 w-full max-w-sm flex flex-col gap-5 pt-8">
+        <div className="relative z-10 w-full max-w-sm flex flex-col gap-3 pt-8">
           <h2 className="text-3xl font-bold font-sans text-gray-900 mb-2 tracking-tight">Report it. Map it. Fix it.</h2>
           <Button onClick={() => navigate('/report')}>
             Report an Issue
           </Button>
-          <Button variant="outline" onClick={() => navigate('/map')}>
-            View Map
-          </Button>
+          <div className="flex gap-3">
+             <Button variant="outline" className="flex-1" onClick={() => navigate('/map')}>
+               View Map
+             </Button>
+             <Button variant="outline" className="flex-1" onClick={() => navigate('/leaderboard')}>
+               Leaderboard
+             </Button>
+          </div>
         </div>
       </div>
 
@@ -73,8 +78,8 @@ export default function Home() {
       {/* Footer */}
       <div className="mt-auto px-6 py-6 text-center text-sm text-gray-500">
         <div className="flex justify-center gap-4 mb-2">
-          <a href="#" className="hover:text-swachh-green">About</a>
-          <a href="#" className="hover:text-swachh-green">Privacy</a>
+          <Link to="/settings/about" className="hover:text-swachh-green">About</Link>
+          <Link to="/settings/privacy" className="hover:text-swachh-green">Privacy</Link>
         </div>
         <p>Copyright © All Rights reserved.</p>
       </div>
