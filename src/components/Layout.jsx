@@ -88,7 +88,7 @@ export default function Layout({ children }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col font-sans max-w-md mx-auto shadow-2xl relative overflow-hidden">
+    <div className="min-h-[100dvh] bg-gray-50 flex flex-col font-sans max-w-md mx-auto shadow-2xl relative overflow-hidden sm:min-h-0 sm:h-[calc(100vh-4rem)] sm:my-8 sm:rounded-[2.5rem] sm:border-[8px] sm:border-slate-800 ring-1 ring-gray-200">
       {renderHeader()}
       
       <main className={clsx("flex-1 flex flex-col relative w-full", isMap && "h-full")}>
