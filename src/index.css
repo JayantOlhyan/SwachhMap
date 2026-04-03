@@ -1,9 +1,53 @@
 @import "tailwindcss";
 @import './leaflet-custom.css';
 
+@theme {
+  --color-swachh-green: #064E3B;
+  --color-swachh-emerald: #10B981;
+  --color-swachh-light: #ECFDF5;
+}
+
 @layer base {
+  :root {
+    --bg-primary: #F9FAFB;
+    --text-primary: #111827;
+    --card-bg: #FFFFFF;
+    --border-color: #E5E7EB;
+  }
+
+  .dark {
+    --bg-primary: #0F172A;
+    --text-primary: #F8FAFC;
+    --card-bg: #1E293B;
+    --border-color: #334155;
+  }
+
   body {
-    @apply bg-gray-50 text-gray-900 antialiased font-sans;
+    @apply antialiased font-sans transition-colors duration-300;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+
+  /* Dark mode overrides */
+  .dark .bg-white {
+    background-color: var(--card-bg) !important;
+    border-color: var(--border-color) !important;
+  }
+  
+  .dark .bg-gray-50 {
+    background-color: var(--bg-primary) !important;
+  }
+
+  .dark .text-gray-900, .dark .text-gray-800, .dark .text-gray-700 {
+    color: var(--text-primary) !important;
+  }
+
+  .dark .text-gray-600, .dark .text-gray-500 {
+    color: #94A3B8 !important;
+  }
+
+  .dark .border-gray-100, .dark .border-gray-200 {
+    border-color: var(--border-color) !important;
   }
 }
 
