@@ -71,14 +71,14 @@ export default function Layout({ children }) {
       );
     }
     
-    if (isProfile || isSettings) {
+    if (isSettings) {
        return (
         <header className="bg-swachh-green text-white p-4 pt-8 pb-5 shadow-lg sticky top-0 z-50 flex items-center border-b-2 border-swachh-emerald/20 rounded-b-3xl">
           <button onClick={() => navigate(-1)} className="mr-4 p-2.5 bg-white/15 hover:bg-white/25 rounded-2xl active:scale-90 transition-all shadow-sm">
             <ArrowLeft size={22} className="stroke-[3]" />
           </button>
           <h1 className="text-xl font-black font-sans tracking-tight drop-shadow-sm">
-            {isProfile ? 'My Profile' : 'Settings'}
+            Settings
           </h1>
         </header>
        );

@@ -13,7 +13,8 @@ export default function Profile() {
   return (
     <div className="flex-1 overflow-y-auto bg-gray-50 pb-20">
       {/* Profile Header */}
-      <div className="bg-swachh-green text-white p-8 rounded-b-[3rem] shadow-lg flex flex-col items-center">
+      <div className="bg-swachh-green text-white p-8 pt-10 rounded-b-[3rem] shadow-lg flex flex-col items-center relative">
+        <h1 className="text-xl font-black font-sans tracking-tight mb-8 drop-shadow-sm">My Profile</h1>
         <div className="w-24 h-24 bg-white rounded-full p-1 shadow-inner relative mb-4">
           <div className="w-full h-full bg-gray-100 rounded-full flex items-center justify-center overflow-hidden">
              <User size={48} className="text-gray-400" />
