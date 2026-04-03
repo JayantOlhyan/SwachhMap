@@ -31,11 +31,11 @@ export default function MapView() {
   }, []);
 
   return (
-    <div className="w-full h-full relative z-0">
+    <div className="absolute inset-0 z-0 bg-gray-100">
       <MapContainer 
         center={[28.6139, 77.2090]} // Delhi coordinates as base
         zoom={12} 
-        style={{ height: '100%', width: '100%' }}
+        style={{ height: '100%', width: '100%', position: 'absolute', inset: 0 }}
         zoomControl={false}
       >
         <TileLayer

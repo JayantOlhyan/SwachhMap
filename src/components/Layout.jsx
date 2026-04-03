@@ -1,5 +1,5 @@
 import { useLocation, Link, useNavigate } from 'react-router-dom';
-import { MapPin, Camera, User, Settings, ArrowLeft } from 'lucide-react';
+import { MapPin, Camera, User, Settings, ArrowLeft, Map as MapIcon, FileText } from 'lucide-react';
 import { clsx } from 'clsx';
 
 export default function Layout({ children }) {
@@ -15,7 +15,7 @@ export default function Layout({ children }) {
   const isDetail = location.pathname.startsWith('/report/');
 
   // Show bottom nav on main utility pages
-  const showBottomNav = isList || isProfile || isSettings || isHome;
+  const showBottomNav = isList || isProfile || isSettings || isHome || isMap;
 
   // Render varying headers based on route
   const renderHeader = () => {
@@ -58,7 +58,7 @@ export default function Layout({ children }) {
 
     if (isMap) {
       return (
-        <header className="absolute top-4 left-4 right-4 z-[500] flex justify-between items-center bg-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-3xl p-3 border border-gray-100">
+        <header className="absolute top-4 left-4 right-4 z-[500] flex justify-between items-center bg-white/90 backdrop-blur-md shadow-lg rounded-3xl p-3 border border-gray-100">
           <div className="flex items-center gap-2 px-1">
             <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain rounded-full bg-white shadow-sm" />
             <h1 className="text-lg font-black text-gray-900 font-sans tracking-tight">SwachhMap</h1>
@@ -90,28 +90,36 @@ export default function Layout({ children }) {
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans max-w-md mx-auto shadow-2xl relative overflow-hidden">
       {renderHeader()}
       
-      <main className={clsx("flex-1 flex flex-col relative", isMap && "h-screen")}>
+      <main className={clsx("flex-1 flex flex-col relative w-full", isMap && "h-full")}>
         {children}
       </main>
 
       {showBottomNav && (
-        <nav className="bg-white/95 backdrop-blur-md border-t border-gray-100 flex justify-between px-6 py-4 sticky bottom-0 z-50 pb-6 rounded-t-3xl shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
+        <nav className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-gray-100 dark:border-slate-800 flex justify-between items-end px-6 py-4 sticky bottom-0 z-[1000] pb-6 rounded-t-3xl shadow-[0_-8px_30px_rgba(0,0,0,0.08)]">
           <Link to="/list" className={clsx("flex flex-col items-center gap-1 transition-colors", isList ? "text-swachh-emerald" : "text-gray-400")}>
-            <MapPin size={24} className={isList ? "fill-swachh-emerald/10" : ""} />
+            <FileText size={24} className={isList ? "fill-swachh-emerald/10" : ""} />
             <p className="text-[10px] font-bold uppercase tracking-tighter">Reports</p>
           </Link>
+          
+          <Link to="/map" className={clsx("flex flex-col items-center gap-1 transition-colors", isMap ? "text-swachh-emerald" : "text-gray-400")}>
+            <MapIcon size={24} className={isMap ? "fill-swachh-emerald/10" : ""} />
+            <p className="text-[10px] font-bold uppercase tracking-tighter">Map</p>
+          </Link>
+
           <Link to="/report" className="flex flex-col items-center -mt-10 relative group">
             <div className="w-16 h-16 bg-swachh-green rounded-2xl flex items-center justify-center shadow-[0_12px_40px_rgba(6,78,59,0.4)] border-4 border-white dark:border-slate-800 text-white transform transition-all hover:scale-110 active:scale-90 z-20 hover:-rotate-3 translate-y-1">
                <Camera size={34} className="stroke-[2.5]" />
             </div>
             <p className="text-[10px] font-black text-swachh-green dark:text-swachh-emerald uppercase tracking-[0.1em] mt-2 group-hover:scale-110 transition-transform">Report</p>
           </Link>
+
           <Link to="/profile" className={clsx("flex flex-col items-center gap-1 transition-colors", isProfile ? "text-swachh-emerald" : "text-gray-400")}>
              <User size={24} className={isProfile ? "fill-swachh-emerald/10" : ""} />
              <p className="text-[10px] font-bold uppercase tracking-tighter">Profile</p>
           </Link>
+          
           <Link to="/settings" className={clsx("flex flex-col items-center gap-1 transition-colors", isSettings ? "text-swachh-emerald" : "text-gray-400")}>
-             <Settings size={24} />
+             <Settings size={24} className={isSettings ? "fill-swachh-emerald/10" : ""} />
              <p className="text-[10px] font-bold uppercase tracking-tighter">Settings</p>
           </Link>
         </nav>
