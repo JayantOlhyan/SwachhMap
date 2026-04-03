@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/logo.png" width="150" alt="SwachhMap Logo" />
+</p>
+
 # 🌿 SwachhMap
 
 **"Report it. Map it. Fix it."**

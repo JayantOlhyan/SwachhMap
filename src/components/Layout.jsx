@@ -20,8 +20,8 @@ export default function Layout({ children }) {
     if (isHome) {
       return (
         <header className="bg-swachh-green text-white p-4 shadow-md sticky top-0 z-50 rounded-b-xl flex justify-center items-center">
-          <div className="flex items-center gap-2">
-            <MapPin className="text-white fill-white bg-green-700 rounded p-1" size={32} />
+          <div className="flex items-center gap-3">
+            <img src="/logo.png" alt="SwachhMap Logo" className="w-10 h-10 object-contain rounded-lg bg-white p-0.5" />
             <h1 className="text-2xl font-bold font-sans tracking-wide">SwachhMap</h1>
           </div>
         </header>
