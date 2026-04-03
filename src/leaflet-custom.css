@@ -1,0 +1,11 @@
+/* SwachhMap specific Leaflet Popup Overrides */
+.swachhmap-popup .leaflet-popup-content-wrapper {
+  border-radius: 12px;
+  padding: 4px;
+}
+.swachhmap-popup .leaflet-popup-content {
+  margin: 8px;
+}
+.swachhmap-popup .leaflet-popup-tip {
+  background: white;
+}
