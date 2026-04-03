@@ -40,8 +40,16 @@ export default function Report() {
     address: ''
   });
   const [position, setPosition] = useState(null); // {lat, lng}
-  // Mock image handling
   const [imageUploaded, setImageUploaded] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file));
+      setImageUploaded(true);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,15 +83,22 @@ export default function Report() {
     <div className="flex-1 overflow-y-auto pb-10 bg-gray-50 font-sans">
       <form onSubmit={handleSubmit} className="p-4 flex flex-col gap-6">
         
-        {/* Image Upload Box */}
         <div 
-          className="border-2 border-dashed border-swachh-green rounded-2xl p-6 bg-green-50 flex flex-col items-center justify-center text-center cursor-pointer transition-colors hover:bg-green-100"
-          onClick={() => setImageUploaded(true)}
+          className="border-2 border-dashed border-swachh-green rounded-2xl p-6 bg-green-50 flex flex-col items-center justify-center text-center cursor-pointer transition-colors hover:bg-green-100 relative min-h-[160px]"
         >
+          <input 
+            type="file" 
+            accept="image/*" 
+            className="absolute inset-0 opacity-0 cursor-pointer z-10" 
+            onChange={handleImageChange}
+          />
           {imageUploaded ? (
-            <div className="text-swachh-green font-bold flex flex-col items-center">
-              <Upload size={32} className="mb-2" />
-              Image Selected!
+            <div className="text-swachh-green font-bold flex flex-col items-center w-full h-full">
+              <img src={selectedImage} alt="Selected" className="w-full h-32 object-cover rounded-xl mb-2" />
+              <div className="flex items-center gap-2">
+                 <Upload size={18} />
+                 <span>Change Image</span>
+              </div>
             </div>
           ) : (
             <>
@@ -104,8 +119,9 @@ export default function Report() {
               style={{ height: '100%', width: '100%' }}
             >
               <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; OpenStreetMap'
+                url="https://{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
+                subdomains={['mt0', 'mt1', 'mt2', 'mt3']}
+                attribution='&copy; Google Maps'
               />
               <LocationPicker position={position} setPosition={setPosition} />
             </MapContainer>

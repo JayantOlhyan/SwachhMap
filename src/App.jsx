@@ -5,6 +5,8 @@ import Report from './pages/Report';
 import MapView from './pages/Map';
 import List from './pages/List';
 import ReportDetail from './pages/ReportDetail';
+import Profile from './pages/Profile';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/map" element={<MapView />} />
           <Route path="/list" element={<List />} />
           <Route path="/report/:id" element={<ReportDetail />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </Layout>
     </Router>
