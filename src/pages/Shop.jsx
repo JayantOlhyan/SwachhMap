@@ -34,7 +34,7 @@ export default function Shop() {
   return (
     <div className="flex-1 overflow-y-auto bg-gray-50 pb-24">
       {/* Premium Header */}
-      <div className="bg-swachh-green text-white p-6 pt-8 pb-12 shadow-xl sticky top-0 z-50 rounded-b-[2.5rem]">
+      <div className="bg-swachh-green text-white p-6 pt-8 pb-12 shadow-xl relative z-10 rounded-b-[2.5rem]">
         <div className="flex items-center gap-3">
           <div className="bg-white/10 p-2 rounded-2xl flex items-center justify-center">
             <ShoppingBag size={28} className="text-white" />
